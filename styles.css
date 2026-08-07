@@ -310,6 +310,8 @@ p { color: var(--text-light); }
   color: #b6c3dd;
 }
 .stat-label em { display: block; font-style: normal; font-size: 0.72rem; color: #7f93bd; margin-top: 2px; }
+.stat-label a { color: #b6c3dd; text-decoration: underline; text-underline-offset: 3px; transition: color 0.15s ease; }
+.stat-label a:hover { color: #fff; }
 
 /* Process */
 .process-grid { position: relative; }
@@ -369,6 +371,17 @@ p { color: var(--text-light); }
 .testimonial footer { display: flex; flex-direction: column; }
 .t-name { font-weight: 700; color: var(--navy); }
 .t-company { font-size: 0.85rem; color: var(--text-faint); }
+
+.testimonials-more {
+  text-align: center;
+  margin-top: 40px;
+}
+.testimonials-more a {
+  font-weight: 600;
+  color: var(--blue);
+  transition: color 0.15s ease;
+}
+.testimonials-more a:hover { color: var(--blue-dark); }
 
 /* FAQ */
 .faq-list { display: flex; flex-direction: column; gap: 12px; }
