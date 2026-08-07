@@ -5,10 +5,12 @@ agency. Static HTML/CSS/JS — no build step, no dependencies.
 
 ## Files
 
-- `index.html` — page structure and content
+- `index.html` — page structure, content, and all SEO/analytics tags
 - `styles.css` — all styling (clean/professional navy + blue palette)
 - `script.js` — mobile nav, FAQ accordion, scroll animations, form validation
 - `assets/favicon.svg` — placeholder logo mark used as the favicon
+- `assets/og-image.png` — social share preview image (1200×630)
+- `robots.txt` / `sitemap.xml` — search engine crawling/indexing config
 
 ## Before you launch — placeholders to replace
 
@@ -51,6 +53,37 @@ If you're hosting elsewhere, either:
 
 Client-side validation (required fields, email format) already runs in
 `script.js` before submission.
+
+## SEO
+
+`index.html`'s `<head>` includes:
+
+- Canonical URL, robots meta, Open Graph + Twitter Card tags (used when the
+  link is shared on social/Slack/iMessage), and `ProfessionalService`
+  JSON-LD structured data.
+- **Before launch**: if the site's real domain isn't
+  `brandstreetagency.com`, update every `https://brandstreetagency.com/...`
+  URL in the `<head>` (canonical, `og:url`, `og:image`, `twitter:image`,
+  and the JSON-LD `url`/`image`), and fill in the JSON-LD `telephone`,
+  `email`, and `sameAs` (social profile URLs) with real values.
+- `robots.txt` and `sitemap.xml` assume the same domain — update the
+  `Sitemap:` line and `<loc>` if it differs.
+- Add more pages to `sitemap.xml` if the site grows beyond this one
+  landing page.
+
+## Analytics
+
+A Google Analytics 4 snippet is included in `<head>`, disabled-in-effect
+until you swap in a real Measurement ID:
+
+1. Create a GA4 property at [analytics.google.com](https://analytics.google.com).
+2. Copy its Measurement ID (format `G-XXXXXXXXXX`).
+3. Replace **both** occurrences of `G-XXXXXXXXXX` in `index.html`'s
+   `<head>` with the real ID.
+
+Prefer a different tool (Plausible, Fathom, PostHog, etc.)? Delete the
+`gtag`/`googletagmanager` `<script>` block and drop in that tool's snippet
+instead — nothing else on the page depends on it.
 
 ## Deploying
 
