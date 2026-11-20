@@ -38,15 +38,10 @@ section.caption { background: var(--panel); border: 1px solid var(--line); borde
     <span class="meta">“Athena” by John Henry Waddell</span>
   </header>
 
-  <div class="tabs" role="group" aria-label="Version">
-    <button id="tabMusic" type="button" aria-pressed="true">With music</button>
-    <button id="tabSilent" type="button" aria-pressed="false">No music</button>
-  </div>
-
   <video id="player" src="reel.mp4" poster="cover.jpg" controls playsinline preload="metadata"></video>
 
   <div class="actions">
-    <button class="btn primary" id="dlVideo" type="button">Download this version (MP4)</button>
+    <button class="btn primary" id="dlVideo" type="button">Download reel (MP4)</button>
     <button class="btn" id="dlCover" type="button">Download cover image</button>
     <div class="status" id="status" role="status"></div>
   </div>
@@ -68,29 +63,13 @@ Rise. 🌿
   </section>
 
   <ul class="tips">
-    <li>Pick “No music” if you want to add a trending sound inside Instagram.</li>
+    <li>The reel has no sound, so add a trending sound inside Instagram when you post.</li>
     <li>When posting, choose the “RISE.” frame as the cover.</li>
   </ul>
 </div>
 
 <script>
-const versions = {
-  music: { src: "reel.mp4", name: "athena_reel.mp4" },
-  silent: { src: "reel-no-music.mp4", name: "athena_reel_no_music.mp4" }
-};
-let current = "music";
-const player = document.getElementById("player");
 const status = document.getElementById("status");
-const tabs = { music: document.getElementById("tabMusic"), silent: document.getElementById("tabSilent") };
-
-function pick(v) {
-  current = v;
-  for (const k in tabs) tabs[k].setAttribute("aria-pressed", String(k === v));
-  player.src = versions[v].src;
-  player.load();
-}
-tabs.music.addEventListener("click", () => pick("music"));
-tabs.silent.addEventListener("click", () => pick("silent"));
 
 let downloadsP = null;
 function getDownloads() {
@@ -119,7 +98,7 @@ async function saveFile(btn, url, filename) {
     btn.disabled = false;
   }
 }
-document.getElementById("dlVideo").addEventListener("click", e => saveFile(e.currentTarget, versions[current].src, versions[current].name));
+document.getElementById("dlVideo").addEventListener("click", e => saveFile(e.currentTarget, "reel.mp4", "athena_reel.mp4"));
 document.getElementById("dlCover").addEventListener("click", e => saveFile(e.currentTarget, "cover.jpg", "athena_reel_cover.jpg"));
 
 document.getElementById("copyCaption").addEventListener("click", async e => {
